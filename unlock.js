@@ -18,10 +18,10 @@
   function ui() {
     if (document.getElementById('kqbar')) return;
     var bar = document.createElement('div'); bar.id = 'kqbar';
-    var CTA = 'สมัครคอร์สหมาเห่า ออนไลน์ ไลฟ์สด โค้งสุดท้าย ส่งเข้าห้องสอบ';
+    var CTA = 'สมัครคอร์สหมาเห่า เพื่อปลดล็อคข้อสอบ ติวไลฟ์สด โค้งสุดท้าย ส่งเข้าห้องสอบ';
     bar.innerHTML = '<a id="kqbtn" href="' + LINK + '" target="_blank" rel="noopener">🔓 ' + CTA + ' →</a>';
     var m = document.createElement('div'); m.id = 'kqmodal';
-    m.innerHTML = '<div class="bx"><div style="font-size:44px">🔒</div><h2>ชุดนี้สำหรับผู้เรียนคอร์ส</h2>' +
+    m.innerHTML = '<div class="bx"><div style="font-size:44px">🔒</div><h2>อ่านไม่ทันใช่ไหม?<br>มาลุยข้อสอบกับเรา</h2>' +
       '<p style="margin:6px 0 14px;color:#d9c27a">กดปุ่มด้านล่าง ระบบจะเปิดแชทเพจพร้อมข้อความ “สมัครคอร์สหมาเห่า” กดส่งได้เลยค่ะ</p>' +
       '<a class="cta" href="' + LINK + '" target="_blank" rel="noopener">' + CTA + ' →</a>' +
       '<button class="x" id="kqclose">ไว้ก่อน ขอลองฟรีต่อ</button></div>';
