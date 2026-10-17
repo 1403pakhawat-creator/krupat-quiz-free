@@ -3,6 +3,7 @@
   var LINK = 'https://m.me/61558005914260?ref=krupat_free&text=%E0%B8%AA%E0%B8%A1%E0%B8%B1%E0%B8%84%E0%B8%A3%E0%B8%84%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%AA%E0%B8%AB%E0%B8%A1%E0%B8%B2%E0%B9%80%E0%B8%AB%E0%B9%88%E0%B8%B2';
   var css = document.createElement('style');
   css.textContent =
+    'a.freefile{display:flex;gap:16px;align-items:center;background:var(--card);border:2px solid #e0a800;border-radius:16px;padding:14px;text-decoration:none;color:inherit;box-shadow:0 6px 20px rgba(201,149,28,.25);transition:transform .2s}a.freefile:hover{transform:translateY(-4px)}a.freefile img{width:42%;max-width:220px;border-radius:10px;box-shadow:0 6px 16px rgba(0,0,0,.35)}.ffb{display:flex;flex-direction:column;gap:8px}.ffb b{font-size:1.2rem;color:var(--navy)}.ffb span{color:var(--mute);font-size:.95rem}.ffb em{font-style:normal;font-weight:700;color:#fff;background:#e91e78;border-radius:12px;padding:10px 14px;text-align:center}' +
     'a.set.tile.locked{position:relative;filter:saturate(.55);cursor:pointer}a.set.tile.locked .cv{opacity:.55}' +
     '.lockmask{position:absolute;z-index:3;top:8px;right:8px;background:rgba(15,10,0,.85);border:1.5px solid #ffd740;border-radius:99px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;font-size:20px}' +
     'a.set.tile.locked .go{color:#b8860b}.freetag{display:inline-block;margin:2px 0 6px;background:linear-gradient(90deg,#ffd740,#ffb300);color:#3a2a00;font-weight:700;border-radius:99px;padding:3px 16px;font-size:.95rem}' +
