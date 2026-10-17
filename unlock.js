@@ -22,7 +22,7 @@
     bar.innerHTML = '<a id="kqbtn" href="' + LINK + '" target="_blank" rel="noopener">🔓 ' + CTA + ' →</a>';
     var m = document.createElement('div'); m.id = 'kqmodal';
     m.innerHTML = '<div class="bx"><div style="font-size:44px">🔒</div><h2>อ่านไม่ทันใช่ไหม?<br>มาลุยข้อสอบกับเรา</h2>' +
-      '<p style="margin:6px 0 14px;color:#d9c27a">กดปุ่มด้านล่าง ระบบจะเปิดแชทเพจพร้อมข้อความ “สมัครคอร์สหมาเห่า” กดส่งได้เลยค่ะ</p>' +
+      '<p style="margin:6px 0 14px;color:#d9c27a">กดปุ่มด้านล่าง ระบบจะเปิดแชทเพจพร้อมข้อความ “สมัครคอร์สหมาเห่า” กดส่งได้เลยครับ</p>' +
       '<a class="cta" href="' + LINK + '" target="_blank" rel="noopener">' + CTA + ' →</a>' +
       '<button class="x" id="kqclose">ไว้ก่อน ขอลองฟรีต่อ</button></div>';
     document.body.appendChild(bar); document.body.appendChild(m);
