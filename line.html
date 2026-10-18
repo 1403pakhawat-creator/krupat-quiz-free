@@ -1,0 +1,26 @@
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>กำลังเข้าสู่ระบบ</title>
+<style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0b1f4b;color:#fff6d6;font-family:Sarabun,system-ui,sans-serif;text-align:center;padding:20px}a{color:#ffd740}</style></head>
+<script>window.KQ_LINE={"id": "2012071951", "api": "https://script.google.com/macros/s/AKfycbxz9xYJklzhdYqW5RNcJGLa5pQb5U9V_losuunLQRfvw95cAFlG46lU-88-4XVeLgt2gw/exec", "cb": "https://1403pakhawat-creator.github.io/krupat-quiz-free/line.html"}</script>
+<body><div><div style="font-size:42px">🐺</div><p id="m">กำลังเข้าสู่ระบบด้วย LINE...</p></div>
+<script>
+(function () {
+  var C = window.KQ_LINE || {}, m = document.getElementById('m'), q = new URLSearchParams(location.search);
+  var KEY = 'krupat_free_line_v1', SKEY = 'krupat_free_line_state', BASE = 'https://1403pakhawat-creator.github.io/krupat-quiz-free/';
+  function fail(t) { m.innerHTML = t + '<br><br><a href="' + BASE + '">ลองอีกครั้ง</a>'; }
+  if (q.get('error')) return fail('ยกเลิกการเข้าสู่ระบบ');
+  var code = q.get('code'), state = q.get('state') || '', i = state.indexOf('.');
+  if (!code || i < 1) return fail('ลิงก์ไม่ถูกต้อง');
+  var nonce = state.slice(0, i), ret = BASE;
+  try { ret = decodeURIComponent(escape(atob(state.slice(i + 1)))); } catch (e) {}
+  if (ret.indexOf(BASE) !== 0) ret = BASE;
+  try { var saved = localStorage.getItem(SKEY); if (saved && saved !== nonce) return fail('เซสชันไม่ตรงกัน'); } catch (e) {}
+  fetch(C.api + '?action=line&code=' + encodeURIComponent(code) + '&redirect_uri=' + encodeURIComponent(C.cb))
+    .then(function (r) { return r.json(); })
+    .then(function (r) {
+      if (!r || !r.ok) return fail('เข้าสู่ระบบไม่สำเร็จ (' + ((r && r.reason) || 'ไม่ทราบสาเหตุ') + ')');
+      try { localStorage.setItem(KEY, JSON.stringify({ tok: r.token, name: r.name, exp: r.exp })); localStorage.removeItem(SKEY); } catch (e) {}
+      location.replace(ret);
+    }).catch(function () { fail('เชื่อมต่อไม่ได้ กรุณาตรวจอินเทอร์เน็ต'); });
+})();
+</script></body></html>
