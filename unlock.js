@@ -2,7 +2,7 @@
 (function () {
   var LINK = 'https://m.me/61558005914260?ref=krupat_free&text=%E0%B8%AA%E0%B8%A1%E0%B8%B1%E0%B8%84%E0%B8%A3%E0%B8%84%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%AA%E0%B8%AB%E0%B8%A1%E0%B8%B2%E0%B9%80%E0%B8%AB%E0%B9%88%E0%B8%B2', API = 'https://script.google.com/macros/s/AKfycbw_yFLXphu5ZPb6etyasx_vFBdmidqgque_nGFNe98xeO4m09-6CaDbBepDH2BPYAlCLg/exec', SITE = 'https://1403pakhawat-creator.github.io/krupat-quiz/';
   var BANK = { name: 'ธนาคารทหารไทยธนชาต (ttb)', holder: 'นาย ภควัต ดินันติ', acct: '__ACCT__', qr: 'qr_promptpay.jpg' };   // ตั้งค่าที่ build_free.py (pay_config.json)
-  var KEY = 'krupat_gate_v2', DKEY = 'krupat_dev_v1';
+  var KEY = 'krupat_gate_v2', DKEY = 'krupat_dev_v1', GROUP = 'https://www.facebook.com/share/g/1UN8aakFbh/?mibextid=wwXIfr';
   var css = document.createElement('style');
   css.textContent =
     'a.promo{position:relative;display:block;border-radius:16px;overflow:hidden;border:2px solid #e91e78;box-shadow:0 8px 24px rgba(233,30,120,.35);text-decoration:none;background:#0d0d10;transition:transform .2s}a.promo:hover{transform:translateY(-4px)}a.promo img{display:block;width:100%}a.promo .pt{position:absolute;top:10px;left:10px;z-index:2;background:linear-gradient(90deg,#ffd740,#ffb300);color:#3a2a00;font-weight:700;border-radius:99px;padding:4px 14px;font-size:.95rem}a.promo em{display:block;font-style:normal;font-weight:700;color:#fff;background:#e91e78;text-align:center;padding:13px 14px;font-size:1.05rem}' +
@@ -77,7 +77,7 @@
         '<button id="kqsend" style="' + BTN + '">ตรวจสลิปและรับรหัส</button><button id="kqrev" style="' + BTN + ';display:none;background:transparent;border:2px solid #ffd740;color:#ffd740">ส่งให้ทีมงานตรวจสลิป</button>' +
         '<p id="kqcm" style="min-height:1.4em;margin:10px 0 0;font-size:.9rem;white-space:pre-line"></p><button id="kqback" style="' + LNK + '">← กลับ</button>');
       var nm = document.getElementById('kqnm'), em = document.getElementById('kqem'), fl = document.getElementById('kqsl'), sd = document.getElementById('kqsend'), rv = document.getElementById('kqrev'), cm = document.getElementById('kqcm'), img = null;
-      function after(r) { sd.disabled = false; rv.disabled = false; if (r.ok && r.status === 'issued' && r.code) { codeView(r.code, r.mailed); return; } msgIn(cm, r.message || 'เกิดข้อผิดพลาด ลองใหม่อีกครั้ง', !!r.ok); rv.style.display = r.canReview ? 'block' : 'none'; if (r.ok && (r.status === 'resent')) sd.style.display = 'none'; }
+      function after(r) { sd.disabled = false; rv.disabled = false; if (r.ok && r.status === 'issued' && r.code) { codeView(r.code, r.mailed, false, nm.value.trim()); return; } msgIn(cm, r.message || 'เกิดข้อผิดพลาด ลองใหม่อีกครั้ง', !!r.ok); rv.style.display = r.canReview ? 'block' : 'none'; if (r.ok && (r.status === 'resent')) sd.style.display = 'none'; }
       function fail() { sd.disabled = false; rv.disabled = false; msgIn(cm, 'เชื่อมต่อไม่ได้ กรุณาตรวจอินเทอร์เน็ตแล้วลองใหม่', false); }
       sd.onclick = function () {
         if (nm.value.replace(/\s+/g, '').length < 3) return msgIn(cm, 'กรอกชื่อจริง (ชื่อ-นามสกุล) ก่อนนะคะ', false);
@@ -89,9 +89,10 @@
       rv.onclick = function () { if (!img) return msgIn(cm, 'แนบสลิปแล้วกดตรวจก่อนนะคะ', false); rv.disabled = true; msgIn(cm, 'กำลังส่ง...', true); post('claim_review', { email: em.value.trim(), name: nm.value.trim(), image: img }).then(after).catch(fail); };
       wire('kqback', offer);
     }
-    function codeView(code, mailed, recovered) {
+    function codeView(code, mailed, recovered, realName) {
       el('<div style="font-size:44px">🎉</div><h2>' + (recovered ? 'พบรหัสของคุณแล้ว!' : 'ตรวจสลิปผ่านแล้ว!') + '</h2><p style="margin:0 0 8px;color:#d9c27a;font-size:.9rem">รหัสเข้าใช้งานของคุณ (จดหรือกดคัดลอกเก็บไว้นะคะ)</p>' +
         '<div style="background:#fff;color:#111;border-radius:12px;padding:12px;font-size:1.5rem;font-weight:800;letter-spacing:2px;border:3px solid #ffd740;user-select:all">' + code + '</div>' +
+        '<div style="text-align:left;background:#0c1a33;border:1.5px solid #4a7bd0;border-radius:14px;padding:12px 14px;margin-top:12px"><b style="color:#8ab4ff">👥 ขั้นต่อไป: เข้ากลุ่ม Facebook ผู้เรียน</b><br><span style="font-size:.92rem">กดขอเข้ากลุ่ม แล้วตอบคำถามก่อนเข้ากลุ่มเป็น <b style="color:#ffd740">ชื่อจริง-นามสกุล</b> และ <b style="color:#ffd740">วันที่โอนเงิน</b>' + (realName ? ' (ชื่อที่คุณกรอก: <b>' + realName.replace(/[<>&"]/g, '') + '</b>)' : '') + '</span><a href="' + GROUP + '" target="_blank" rel="noopener" style="' + BTN + ';background:#1877f2">เข้ากลุ่ม Facebook ▶</a></div>' +
         '<button id="kqcp" style="' + BTN + ';background:transparent;border:2px solid #ffd740;color:#ffd740">📋 คัดลอกรหัส</button><button id="kqenter" style="' + BTN + '">เข้าคลังข้อสอบเต็ม ▶</button>' +
         '<p id="kqem2" style="min-height:1.3em;margin:8px 0 0;color:#9be28f;font-size:.85rem">' + (mailed ? 'ส่งสำเนาเข้าอีเมลแล้ว' : '') + '</p><p style="margin:2px 0 0;color:#a89350;font-size:.78rem">รหัสนี้ใช้ได้ 2 เครื่อง โปรดอย่าส่งต่อให้ผู้อื่น</p>');
       var m2 = document.getElementById('kqem2'); copyBtn('kqcp', code, 'kqem2');
