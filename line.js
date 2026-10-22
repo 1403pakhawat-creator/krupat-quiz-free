@@ -3,6 +3,7 @@
    จำเครื่อง 30 วัน (ตรงกับอายุ token ฝั่งเซิร์ฟเวอร์) แต่ส่ง "เข้าหน้านี้" ไปจดทุกครั้งที่เปิด */
 (function () {
   var C = window.KQ_LINE; if (!C || !C.id || !C.api || !C.cb) return;
+  try { if (/[?&]pay=1(&|$)/.test(location.search)) return; } catch (e) {}   // มาจากปุ่มสมัครหน้าขาย = ไปหน้าโอนเลย ไม่ต้องล็อกอิน LINE ก่อน
   var KEY = 'krupat_free_line_v1', SKEY = 'krupat_free_line_state';
   function load() { try { var v = JSON.parse(localStorage.getItem(KEY)); if (v && v.tok && v.exp > Date.now()) return v; } catch (e) {} return null; }
   function clear() { try { localStorage.removeItem(KEY); } catch (e) {} }

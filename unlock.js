@@ -113,6 +113,7 @@
         post('recover', { email: em.value.trim() }).then(function (r) { if (r.ok && r.code) return codeView(r.code, false, true); msgIn(cm, r.message || 'ไม่พบรหัส', false); }).catch(function () { msgIn(cm, 'เชื่อมต่อไม่ได้ ลองใหม่อีกครั้ง', false); }); });
       wire('kqback', offer);
     }
+    try { if (/[?&]pay=1(&|$)/.test(location.search)) open(); } catch (e) {}   // มาจากปุ่มสมัครหน้าขาย
   }
   if (document.body) ui(); else document.addEventListener('DOMContentLoaded', ui);
 })();
